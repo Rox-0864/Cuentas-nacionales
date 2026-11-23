@@ -146,7 +146,33 @@ st.warning("La deuda fue baja y estable (15%) en los 90 y con Fox; **saltó con 
 
 st.markdown("---")
 
-# 6. Veredicto
+# 6b. Megaproyectos
+st.header("6b · Megaproyectos: ¿inversión o elefante blanco?")
+mega = pd.read_csv("data/megaproyectos.csv")
+st.markdown("""
+| Proyecto | Costo inicial | Costo final | Sobrecosto | Desempeño |
+|---|---|---|---|---|
+| Tren Maya | $150 mil M MXN | $450-544 mil M MXN | **+233%** | 5% de afluencia, pérdidas 788% |
+| Refinería Dos Bocas | $8 mil M USD | $21 mil M USD | **+162%** | 41-50% de capacidad (mayor sobrecosto mundial) |
+| AIFA | $75 mil M MXN | ~$185 mil M MXN | — | reemplaza al NAIM (mejor ubicado) |
+| Corredor Interoceánico | moderado | moderado | bajo | polos de desarrollo vacíos |
+""")
+dos = mega.dropna(subset=["sobrecosto_pct"])
+fig_m = go.Figure(go.Bar(y=dos["proyecto"], x=dos["sobrecosto_pct"], orientation="h",
+                         marker_color="#d62728",
+                         text=[f"+{v:.0f}%" for v in dos["sobrecosto_pct"]], textposition="outside"))
+fig_m.update_layout(height=260, margin=dict(l=0, r=0, t=10, b=0), xaxis_title="Sobrecosto (%)",
+                    xaxis=dict(range=[0, 280]))
+st.plotly_chart(fig_m, use_container_width=True)
+st.warning("**Veredicto:** en su mayoría son **elefantes blancos** — sobrecostos de 2-3x, opacidad y retorno "
+           "dudoso, no inversión que eleve la productividad. Dos Bocas es el caso más claro (refina crudo pesado "
+           "inadecuado y sigue en pruebas). El Tren Maya pierde ~$7 M MXN/día. El Corredor Interoceánico es el único "
+           "conceptualmente defendible, pero especulativo. El déficit récord no se fue en productividad, se fue en "
+           "obra simbólica.")
+
+st.markdown("---")
+
+# 7. Veredicto
 st.header("7 · ¿Estamos mejor con el cambio desde AMLO?")
 st.markdown("""
 | Variable | Resultado AMLO | Veredicto |

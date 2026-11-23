@@ -1,0 +1,5 @@
+proyecto,costo_inicial,costo_final,unidad,sobrecosto_pct,desempeno_pct,nota
+Tren Maya,150000.0,500000.0,M MXN,233.0,5.0,"5% de afluencia proyectada, pérdidas operativas 788%"
+Refinería Dos Bocas,8000.0,21000.0,M USD,162.0,45.0,"opera a 41-50% de capacidad, mayor sobrecosto mundial"
+AIFA (+ NAIM cancelado),75000.0,185000.0,M MXN,,,reemplaza al NAIM (mejor ubicado); ~110 mil M MXN desperdiciados
+Corredor Interoceánico,,,M MXN,,,apuesta a nearshoring; polos de desarrollo mayormente vacíos

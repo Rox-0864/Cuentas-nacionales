@@ -119,6 +119,26 @@ La deuda fue baja y estable (15%) en los 90 y con Fox; **saltó con Calderón**
 y cerró con un **déficit récord (~5-6% del PIB, el mayor desde 1990)**, pese a la
 promesa de no endeudar. La medida más amplia (SHRFSP) ya supera el 51% del PIB.
 
+## 6b. Megaproyectos: ¿inversión productiva o elefante blanco?
+
+Los megaproyectos del sexenio, financiados en parte con el déficit récord:
+
+| Proyecto | Costo inicial | Costo final | Sobrecosto | Desempeño |
+|---|---|---|---|---|
+| Tren Maya | $150 mil M MXN | $450-544 mil M MXN | **+233%** | 5% de afluencia proyectada, pérdidas 788% |
+| Refinería Dos Bocas | $8 mil M USD | $21 mil M USD | **+162%** | opera a 41-50% de capacidad (mayor sobrecosto mundial) |
+| AIFA | $75 mil M MXN | ~$185 mil M MXN (incluye NAIM) | — | reemplaza al NAIM (mejor ubicado) |
+| Corredor Interoceánico | moderado | moderado | bajo | polos de desarrollo vacíos |
+
+**Veredicto:** en su mayoría no son inversión productiva que eleve la
+productividad, sino **elefantes blancos** con sobrecostos de 2-3x, opacidad y
+retorno dudoso. Dos Bocas es el caso más claro (refina crudo pesado inadecuado,
+sigue en pruebas a años de su inauguración, y Pemex —la petrolera más endeudada
+del mundo— pierde en refinación). El Tren Maya pierde ~$7 M MXN/día y se sostiene
+con subsidios. El Corredor Interoceánico es el único conceptualmente defendible
+(apuesta al nearshoring), pero especulativo. La conexión con la sección 4: el
+déficit no se fue en productividad, se fue en obra simbólica.
+
 ## 7. ¿Estamos mejor con el cambio desde AMLO? — el veredicto
 
 | Variable | Resultado AMLO | Veredicto |
