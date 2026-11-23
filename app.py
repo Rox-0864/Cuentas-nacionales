@@ -209,3 +209,25 @@ st.markdown("""
 """)
 st.caption("Fuentes: INEGI (SCNM, series originales), Banco de México, FMI WEO. "
            "Reproducible: `scripts/analisis.py`.")
+
+st.markdown("---")
+
+# 10. Evaluación de sexenios
+st.header("10 · Evaluación de sexenios (puntaje comparativo)")
+ev = pd.read_csv("data/evaluacion_sexenios.csv").sort_values("puntaje_4v", ascending=False)
+ev["puntaje"] = ev["puntaje_4v"].fillna(ev["puntaje_3v"])
+st.markdown("""
+Modelo: 4 variables (crecimiento PIB, PIB per cápita, inflación, cambio en deuda/PIB),
+normalizadas 0-100 (mejor=100, peor=0) y promediadas con pesos iguales.
+""")
+fig_ev = go.Figure()
+cols = ["#2ca02c" if p >= 75 else "#ff7f0e" if p >= 55 else "#d62728" for p in ev["puntaje"]]
+fig_ev.add_trace(go.Bar(x=ev["sexenio"], y=ev["puntaje"], marker_color=cols,
+                        text=[f"{p:.0f}" for p in ev["puntaje"]], textposition="outside"))
+fig_ev.update_layout(height=380, margin=dict(l=0, r=0, t=10, b=0), yaxis=dict(range=[0, 110]),
+                     yaxis_title="Puntaje (0-100)")
+st.plotly_chart(fig_ev, use_container_width=True)
+st.warning("**Caveats honestos:** (1) el puntaje NO ajusta por shocks externos — Zedillo absorbió la crisis de "
+           "1994, Calderón la de 2009 y AMLO la pandemia. (2) Faltan dimensiones clave: **seguridad**, empleo, "
+           "salario real e instituciones (el narco/la violencia bajarían el puntaje de Calderón, Peña y AMLO). "
+           "(3) Los pesos son subjetivos. Es una herramienta para comparar, no una verdad objetiva.")
