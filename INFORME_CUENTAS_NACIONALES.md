@@ -49,7 +49,39 @@ Media geométrica anual (año calendario):
    Con una población que crece ~1% anual, un PIB que crece ~1-2% deja el ingreso
    por habitante prácticamente estancado por más de dos décadas.
 
-## 4. Inflación por sexenio
+## 4. PIB por sectores — la industrialización trunca
+
+Participación en el PIB (VAB, %):
+
+| Año | Primarias | Secundarias | Terciarias |
+|---|---|---|---|
+| 2003 | 3.6 | 33.7 | 62.7 |
+| 2013 | 3.3 | 32.8 | 63.9 |
+| 2018 | 3.4 | 30.5 | 66.1 |
+| 2023 | 3.2 | 31.5 | 64.5 |
+
+Lo que importa resaltar:
+
+1. **La manufactura no despegó.** Lleva **30 años estancada en ~18-20% del PIB**,
+   a pesar del TLCAN (1994) y el T-MEC. México se integró a las cadenas globales
+   como maquilador/exportador, pero **no ganó participación industrial** en su
+   propia economía. (Ojo: el "salto" de 18% a 20% en 2015 es un cambio de año
+   base, no un crecimiento real.)
+2. **La economía se terciarizó** (servicios ~63-66%), pero buena parte son
+   servicios de **baja productividad e informalidad** — un "refugio" laboral, no
+   una economía de alto valor.
+3. **El petróleo colapsó**: Pemex pasó de **3.4 millones de barriles/día (2004) a
+   ~1.5 (2024)**, y de motor fiscal a carga. La "renta petrolera" que sostuvo al
+   país se esfumó sin que nada la reemplazara.
+4. **El nearshoring prometido no aparece en los datos**: la manufactura cayó
+   −0.4% en 2024 y los "motores manufactureros siguen apagados" en 2026.
+
+**Conclusión estructural:** el bajo crecimiento (1-2%) no es solo coyuntura. Es la
+consecuencia de una economía que **no se industrializó** (manufactura plana), se
+**terciarizó hacia servicios de baja productividad**, y **perdió su motor petrolero**.
+Esa es la raíz de por qué el PIB per cápita lleva 20 años estancado.
+
+## 5. Inflación por sexenio
 
 Media geométrica anual (INPC):
 
@@ -68,7 +100,7 @@ desde Fox la inflación ronda **4-5%**. AMLO registró la **más alta del siglo 
 (5.0% anual, 34% acumulada) por el shock global 2021-2022 (pandemia + guerra en
 Ucrania), aun lejos de la meta Banxico de 3%.
 
-## 5. Deuda pública por sexenio
+## 6. Deuda pública por sexenio
 
 Deuda neta del sector público / PIB al cierre:
 
@@ -87,7 +119,7 @@ La deuda fue baja y estable (15%) en los 90 y con Fox; **saltó con Calderón**
 y cerró con un **déficit récord (~5-6% del PIB, el mayor desde 1990)**, pese a la
 promesa de no endeudar. La medida más amplia (SHRFSP) ya supera el 51% del PIB.
 
-## 6. ¿Estamos mejor con el cambio desde AMLO? — el veredicto
+## 7. ¿Estamos mejor con el cambio desde AMLO? — el veredicto
 
 | Variable | Resultado AMLO | Veredicto |
 |---|---|---|
@@ -103,7 +135,7 @@ casi 40 años. En inflación ya estábamos "bien" desde los 2000; el sexenio no 
 mejoró (lo empeoró frente a sus tres predecesores). Es un trade-off: más gasto
 social, menos crecimiento y más deuda.
 
-## 7. Pronóstico cauto (2026-2027)
+## 8. Pronóstico cauto (2026-2027)
 
 - **Inflación**: converge a la meta de 3% → **2026 ~3.2%, 2027 ~3.0%** (si no hay
   nuevo shock externo).
@@ -114,7 +146,7 @@ social, menos crecimiento y más deuda.
 Ambos pronósticos son **rangos de planificación**, no cifras puntuales; la deuda
 depende críticamente de decisiones fiscales, no de una tendencia natural.
 
-## 8. Nota metodológica (importante)
+## 9. Nota metodológica (importante)
 
 El PIB de INEGI ha cambiado de **año base** varias veces (1993, 2003, 2008, 2013,
 2018 y 2024), y cada cambio **recalcula** la serie. Las tasas de crecimiento que
@@ -129,7 +161,7 @@ que INEGI reconstruye encadenando las bases. Aun así:
 
 ---
 
-## 5. Reproducir
+## 10. Reproducir
 
 ```bash
 python scripts/analisis.py      # agrega por sexenio + gráficos

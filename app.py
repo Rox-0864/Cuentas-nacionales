@@ -78,8 +78,45 @@ st.warning("**El punto crudo:** desde 2001 el PIB per cápita crece menos del 1%
 
 st.markdown("---")
 
-# 4. Inflación
-st.header("4 · Inflación por sexenio")
+# 4. PIB por sectores
+st.header("4 · PIB por sectores — la industrialización trunca")
+sect = pd.read_csv("data/pib_sectores.csv")
+manuf = pd.read_csv("data/manufactura_pib.csv")
+pemex = pd.read_csv("data/pemex_produccion.csv")
+cA, cB, cC = st.columns(3)
+with cA:
+    st.subheader("Manufactura (% PIB)")
+    f = go.Figure()
+    f.add_trace(go.Scatter(x=manuf["Anio"], y=manuf["manufactura_pib"], mode="lines+markers",
+                           line=dict(color="#1f77b4", width=2)))
+    f.add_vrect(x0=2013.5, x1=2015.5, fillcolor="gray", opacity=0.15, line_width=0)
+    f.update_layout(height=280, margin=dict(l=0, r=0, t=10, b=0), yaxis=dict(range=[15, 23]), yaxis_title="% PIB")
+    st.plotly_chart(f, use_container_width=True)
+    st.caption("Estancada ~18-20% por 30 años pese a TLCAN/T-MEC.")
+with cB:
+    st.subheader("Gran división (% VAB)")
+    f = go.Figure()
+    for col, color, name in [("Terciarias", "#2ca02c", "Servicios"), ("Secundarias", "#1f77b4", "Industria"),
+                             ("Primarias", "#d62728", "Primarias")]:
+        f.add_trace(go.Scatter(x=sect["Anio"], y=sect[col], mode="lines+markers", name=name,
+                               line=dict(color=color, width=2)))
+    f.update_layout(height=280, margin=dict(l=0, r=0, t=10, b=0), yaxis_title="% VAB")
+    st.plotly_chart(f, use_container_width=True)
+with cC:
+    st.subheader("Pemex (mbd)")
+    f = go.Figure()
+    f.add_trace(go.Scatter(x=pemex["Anio"], y=pemex["mbd"], mode="lines+markers",
+                           line=dict(color="#8c564b", width=2), fill="tozeroy"))
+    f.update_layout(height=280, margin=dict(l=0, r=0, t=10, b=0), yaxis_title="mbd")
+    st.plotly_chart(f, use_container_width=True)
+st.warning("**La causa estructural del bajo crecimiento:** México no se industrializó (manufactura plana ~18-20%), "
+           "se terciarizó hacia servicios de baja productividad (63-66%) y perdió su motor petrolero (Pemex −56%). "
+           "El nearshoring prometido no aparece en los datos (manufactura −0.4% en 2024).")
+
+st.markdown("---")
+
+# 5. Inflación
+st.header("5 · Inflación por sexenio")
 fig4 = go.Figure()
 colores4 = ["#d62728" if v > 20 else "#1f77b4" for v in dinfl["anual"]]
 fig4.add_trace(go.Bar(x=dinfl["sexenio"], y=dinfl["anual"], marker_color=colores4,
@@ -94,7 +131,7 @@ st.caption("Escala logarítmica. La hiperinflación de los 80 (~85%) fue domada 
 st.markdown("---")
 
 # 5. Deuda
-st.header("5 · Deuda pública por sexenio (cierre, % PIB)")
+st.header("6 · Deuda pública por sexenio (cierre, % PIB)")
 d = deuda[~deuda["sexenio"].str.endswith("*")]
 fig5 = go.Figure()
 fig5.add_trace(go.Scatter(x=d["sexenio"], y=d["deuda_pib"], mode="lines+markers",
@@ -110,7 +147,7 @@ st.warning("La deuda fue baja y estable (15%) en los 90 y con Fox; **saltó con 
 st.markdown("---")
 
 # 6. Veredicto
-st.header("6 · ¿Estamos mejor con el cambio desde AMLO?")
+st.header("7 · ¿Estamos mejor con el cambio desde AMLO?")
 st.markdown("""
 | Variable | Resultado AMLO | Veredicto |
 |---|---|---|
@@ -127,7 +164,7 @@ st.info("**Respuesta honesta:** no es un 'mejor' limpio. Hubo una **mejora socia
 st.markdown("---")
 
 # 7. Pronóstico
-st.header("7 · Pronóstico cauto (2026-2027)")
+st.header("8 · Pronóstico cauto (2026-2027)")
 c1p, c2p = st.columns(2)
 c1p.metric("Inflación 2026 (proy.)", "~3.2%", "converge a meta 3%")
 c2p.metric("Deuda/PIB 2027 (proy.)", "~47-48%", "riesgo al alza si no baja el déficit")
@@ -136,7 +173,7 @@ st.caption("Rangos de planificación, no cifras puntuales: la deuda depende de d
 
 st.markdown("---")
 
-st.header("8 · Nota metodológica")
+st.header("9 · Nota metodológica")
 st.markdown("""
 - INEGI cambió el **año base** del PIB varias veces (1993, 2003, 2008, 2013, 2018, 2024); cada
   cambio recalcula la serie. Las tasas usadas provienen de la **serie retropolada** oficial.
