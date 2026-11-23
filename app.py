@@ -9,9 +9,11 @@ def cargar():
     crec = pd.read_csv("data/pib_crecimiento_1982_2025.csv")
     sex = pd.read_csv("data/pib_por_sexenio.csv")
     pc = pd.read_csv("data/pib_percapita_por_sexenio.csv")
-    return crec, sex, pc
+    dinfl = pd.read_csv("data/inflacion_por_sexenio.csv")
+    deuda = pd.read_csv("data/deuda_por_sexenio.csv")
+    return crec, sex, pc, dinfl, deuda
 
-crec, sex, pc = cargar()
+crec, sex, pc, dinfl, deuda = cargar()
 
 st.title("📈 Cuentas Nacionales de México — por sexenio")
 st.caption("Crecimiento del PIB real 1983–2024 · INEGI/Banxico/FMI")
@@ -76,7 +78,65 @@ st.warning("**El punto crudo:** desde 2001 el PIB per cápita crece menos del 1%
 
 st.markdown("---")
 
-st.header("4 · Nota metodológica")
+# 4. Inflación
+st.header("4 · Inflación por sexenio")
+fig4 = go.Figure()
+colores4 = ["#d62728" if v > 20 else "#1f77b4" for v in dinfl["anual"]]
+fig4.add_trace(go.Bar(x=dinfl["sexenio"], y=dinfl["anual"], marker_color=colores4,
+                      text=[f"{v:.0f}%" for v in dinfl["anual"]], textposition="outside"))
+fig4.add_hline(y=3, line_dash="dot", line_color="gray")
+fig4.update_layout(height=400, margin=dict(l=0, r=0, t=10, b=0),
+                   yaxis_title="% anual", yaxis=dict(type="log", range=[0.3, 2.1]))
+st.plotly_chart(fig4, use_container_width=True)
+st.caption("Escala logarítmica. La hiperinflación de los 80 (~85%) fue domada en los 90; desde Fox ronda "
+           "4-5%. AMLO tuvo la más alta del siglo XXI (5.0% anual) por el shock 2021-22. Meta Banxico: 3% (línea punteada).")
+
+st.markdown("---")
+
+# 5. Deuda
+st.header("5 · Deuda pública por sexenio (cierre, % PIB)")
+d = deuda[~deuda["sexenio"].str.endswith("*")]
+fig5 = go.Figure()
+fig5.add_trace(go.Scatter(x=d["sexenio"], y=d["deuda_pib"], mode="lines+markers",
+                          line=dict(color="#1f77b4", width=3), marker=dict(size=9),
+                          text=[f"{v:.1f}%" for v in d["deuda_pib"]], textposition="top center"))
+fig5.update_layout(height=400, margin=dict(l=0, r=0, t=10, b=0), yaxis_title="% del PIB",
+                   yaxis=dict(range=[0, 52]))
+st.plotly_chart(fig5, use_container_width=True)
+st.warning("La deuda fue baja y estable (15%) en los 90 y con Fox; **saltó con Calderón (2008)** y no ha "
+           "dejado de subir. AMLO la incrementó +8.5 pp (a 44.8%) y cerró con **déficit récord (~5-6% del PIB)**. "
+           "La medida amplia (SHRFSP) ya supera 51%.")
+
+st.markdown("---")
+
+# 6. Veredicto
+st.header("6 · ¿Estamos mejor con el cambio desde AMLO?")
+st.markdown("""
+| Variable | Resultado AMLO | Veredicto |
+|---|---|---|
+| Inflación | 5.0% anual | Mejor que los 80, **peor que Fox/Calderón/Peña** |
+| Deuda/PIB | +8.5 pp | **Peor**: déficit récord 2024 |
+| Crecimiento | 0.9% anual | **Peor**: el más bajo desde De la Madrid |
+| Pobreza (ingreso) | −6.7 pts | **Mejor**, vía transferencias y con duda metodológica (CONEVAL→INEGI) |
+""")
+st.info("**Respuesta honesta:** no es un 'mejor' limpio. Hubo una **mejora social real por ingreso** "
+        "(transferencias, pensiones, remesas, salario mínimo), pero **financiada con deuda y déficit récord**, "
+        "y con el **crecimiento más bajo en casi 40 años**. En inflación ya estábamos 'bien' desde los 2000; "
+        "el sexenio no lo mejoró. Es un trade-off: más gasto social, menos crecimiento y más deuda.")
+
+st.markdown("---")
+
+# 7. Pronóstico
+st.header("7 · Pronóstico cauto (2026-2027)")
+c1p, c2p = st.columns(2)
+c1p.metric("Inflación 2026 (proy.)", "~3.2%", "converge a meta 3%")
+c2p.metric("Deuda/PIB 2027 (proy.)", "~47-48%", "riesgo al alza si no baja el déficit")
+st.caption("Rangos de planificación, no cifras puntuales: la deuda depende de decisiones fiscales, "
+           "no de una tendencia natural.")
+
+st.markdown("---")
+
+st.header("8 · Nota metodológica")
 st.markdown("""
 - INEGI cambió el **año base** del PIB varias veces (1993, 2003, 2008, 2013, 2018, 2024); cada
   cambio recalcula la serie. Las tasas usadas provienen de la **serie retropolada** oficial.
