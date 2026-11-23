@@ -236,29 +236,29 @@ st.markdown("---")
 
 # 10. Evaluación de sexenios
 st.header("10 · Evaluación de sexenios (puntaje comparativo)")
-ev = pd.read_csv("data/evaluacion_sexenios.csv").sort_values("puntaje_7v", ascending=False)
-ev["puntaje"] = ev["puntaje_7v"]
-ev["puntaje_4v_disp"] = ev["puntaje_4v"]
+ev = pd.read_csv("data/evaluacion_sexenios.csv").sort_values("puntaje_10v", ascending=False)
+ev["puntaje"] = ev["puntaje_10v"]
+ev["puntaje_7v_disp"] = ev["puntaje_7v"]
 st.markdown("""
-Modelo: **7 variables** — crecimiento PIB, PIB per cápita, inflación, deuda/PIB, **seguridad (homicidios)**,
-**salario real** y **empleo formal** — normalizadas 0-100 y promediadas con pesos iguales.
+Modelo: **10 variables** — crecimiento PIB, PIB per cápita, inflación, deuda/PIB, seguridad (homicidios),
+salario real, empleo formal, **desigualdad (Gini), corrupción (IPC) e instituciones/estado de derecho (WGI)** —
+normalizadas 0-100 y promediadas con pesos iguales.
 """)
 fig_ev = go.Figure()
 cols = ["#2ca02c" if p >= 55 else "#ff7f0e" if p >= 42 else "#d62728" for p in ev["puntaje"]]
 fig_ev.add_trace(go.Bar(x=ev["sexenio"], y=ev["puntaje"], marker_color=cols,
                         text=[f"{p:.0f}" for p in ev["puntaje"]], textposition="outside"))
-# comparación: solo economía (4v) en gris
-fig_ev.add_trace(go.Scatter(x=ev["sexenio"], y=ev["puntaje_4v_disp"], mode="markers",
-                            marker=dict(color="#808080", size=9), name="Solo economía (4 variables)"))
+# comparación: 7 variables en gris
+fig_ev.add_trace(go.Scatter(x=ev["sexenio"], y=ev["puntaje_7v_disp"], mode="markers",
+                            marker=dict(color="#808080", size=9), name="Sin instituciones/corrupción/Gini (7 variables)"))
 fig_ev.update_layout(height=400, margin=dict(l=0, r=0, t=10, b=0), yaxis=dict(range=[0, 110]),
                      yaxis_title="Puntaje (0-100)", legend=dict(orientation="h", yanchor="bottom", y=1.02))
 st.plotly_chart(fig_ev, use_container_width=True)
-st.info("**Cómo cambia al agregar seguridad y dimensión social:** con solo economía, ganaba Salinas (95); al sumar "
-        "homicidios, salario y empleo, **el podio se compacta**: Zedillo (68), Fox (67) y Salinas (67) quedan "
-        "prácticamente empatados — los puntos grises muestran dónde estaba cada uno con solo economía. "
-        "Salinas baja porque su sexenio tuvo colapso salarial y violencia; AMLO sube en salario real (100) pero "
-        "se hunde en seguridad (0, el sexenio más violento).")
+st.info("**Con las 10 variables, el podio queda Fox (66), Zedillo (65) y Salinas (59).** Fox gana por ser el mejor en "
+        "corrupción e instituciones decentes. **AMLO cae al 6.º (46)**: es el mejor en desigualdad (Gini 0.40) pero el "
+        "peor en instituciones (0, por el desmantelamiento de órganos autónomos y la reforma judicial) y muy bajo en "
+        "corrupción — sus dos extremos se cancelan. Zedillo es el mejor en instituciones (100).")
 st.warning("**Caveats honestos:** (1) no ajusta por shocks externos (Zedillo absorbió 1994, Calderón 2009, AMLO la "
-           "pandemia). (2) Salario real y empleo de los 80-90 son estimaciones, no cifras duras. (3) Siguen faltando "
-           "instituciones/estado de derecho, corrupción y desigualdad. (4) Los pesos son subjetivos. Es una herramienta "
-           "para comparar, no una verdad objetiva.")
+           "pandemia). (2) Gini, corrupción e instituciones de los 80-90 son estimaciones (el IPC arranca en 1995 y el "
+           "WGI en 1996). (3) Siguen faltando dimensiones (desapariciones, libertad de prensa, medio ambiente). "
+           "(4) Los pesos son subjetivos. Es una herramienta para comparar, no una verdad objetiva.")
