@@ -139,6 +139,31 @@ con subsidios. El Corredor Interoceánico es el único conceptualmente defendibl
 (apuesta al nearshoring), pero especulativo. La conexión con la sección 4: el
 déficit no se fue en productividad, se fue en obra simbólica.
 
+## 6c. ¿Por qué subió la deuda en cada sexenio?
+
+| Sexenio | Salto | Causa principal |
+|---|---|---|
+| Calderón | +14.2 pp | **Crisis global 2008-09** (caída de ingresos) + **reconocimiento de los PIDIREGAS** (deuda fuera de balance de Pemex/CFE que se sacó a la luz — en parte un cambio contable, no deuda nueva) |
+| Peña Nieto | +7.6 pp | **Colapso del petróleo** (2014-16, de $97 a $37 USD) → Pemex se endeudó; la depreciación del peso infló la deuda externa |
+| AMLO | +8.5 pp | **Tres prioridades**: rescate de Pemex, programas sociales y megaobras + COVID |
+
+### ¿A dónde se fue el gasto del sexenio de AMLO?
+
+De un aumento de deuda neta de ~$3.2 billones MXN:
+
+| Rubro | Monto |
+|---|---|
+| Programas sociales (Bienestar) | ~$2.7 billones |
+| Rescate de Pemex | ~$2.2 billones |
+| Megaobras (8 obras emblema) | ~$1.05 billones (**≈33% de la deuda**) |
+
+**Conclusión:** las megaobras son **~un tercio** del aumento de la deuda — grandes, pero
+**no el mayor componente**. Pesaron más el rescate de Pemex y los programas sociales.
+Los tres saltos de deuda tienen causas distintas: crisis (Calderón), petróleo (Peña) y
+una mezcla de rescate + gasto social + obra de retorno dudoso (AMLO). En ninguno de los
+tres la deuda se usó mayoritariamente para elevar la productividad — que es justo lo que
+explica el estancamiento del PIB per cápita.
+
 ## 7. ¿Estamos mejor con el cambio desde AMLO? — el veredicto
 
 | Variable | Resultado AMLO | Veredicto |

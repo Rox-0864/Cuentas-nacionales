@@ -172,6 +172,28 @@ st.warning("**Veredicto:** en su mayoría son **elefantes blancos** — sobrecos
 
 st.markdown("---")
 
+# 6c. Causas de la deuda
+st.header("6c · ¿Por qué subió la deuda en cada sexenio?")
+causas = pd.read_csv("data/deuda_causas.csv")
+for _, r in causas.iterrows():
+    st.markdown(f"**{r['sexenio']} (+{r['salto_pp']} pp):** {r['causa']}")
+st.markdown("")
+gasto = pd.read_csv("data/amlo_gasto.csv")
+fig_g = go.Figure(go.Bar(y=gasto["rubro"], x=gasto["billones"], orientation="h",
+                         marker_color=["#ff7f0e", "#d62728", "#1f77b4"],
+                         text=[f"${v:.2f} billones" for v in gasto["billones"]], textposition="outside"))
+fig_g.add_vline(x=3.2, line_dash="dot", line_color="gray")
+fig_g.update_layout(height=260, margin=dict(l=0, r=0, t=10, b=0), xaxis_title="Billones de pesos (MXN)",
+                    xaxis=dict(range=[0, 3.6]),
+                    title="¿A dónde se fue el gasto del sexenio de AMLO? (deuda neta ~$3.2 billones)")
+st.plotly_chart(fig_g, use_container_width=True)
+st.info("**Las megaobras son ~un tercio (~$1.05 billones) del aumento de deuda (~$3.2 billones)** — grandes, "
+        "pero no el mayor componente: pesaron más el rescate de Pemex (~$2.2 billones) y los programas sociales "
+        "(~$2.7 billones). Los tres saltos de deuda tienen causas distintas: crisis global (Calderón), colapso del "
+        "petróleo (Peña) y una mezcla de rescate + gasto social + obra de retorno dudoso (AMLO).")
+
+st.markdown("---")
+
 # 7. Veredicto
 st.header("7 · ¿Estamos mejor con el cambio desde AMLO?")
 st.markdown("""
